@@ -50,8 +50,11 @@ public class Medico implements Serializable{
 	@Column(name="telefono")
 	private String telefono;
 	
+	// Constructor vacío requerido por Hibernate
+    public Medico() {
+    }
 	// constructor vacio
-	public Medico() {
+	public Medico(int id, String string, String string2, String string3, Sexo m, String string4, String string5, String string6, String string7, String string8) {
 	}
 
 	public Medico(int id, String legajo, String nombre, String apellido, Sexo sexo, LocalDate nacimiento,
