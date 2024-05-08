@@ -53,9 +53,6 @@ public class Medico implements Serializable{
 	// Constructor vacío requerido por Hibernate
     public Medico() {
     }
-	// constructor vacio
-	public Medico(int id, String string, String string2, String string3, Sexo m, String string4, String string5, String string6, String string7, String string8) {
-	}
 
 	public Medico(int id, String legajo, String nombre, String apellido, Sexo sexo, LocalDate nacimiento,
 			String direccion, String localidad, String email, String telefono) {
