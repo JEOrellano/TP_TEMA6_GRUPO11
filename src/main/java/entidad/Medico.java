@@ -53,12 +53,10 @@ public class Medico implements Serializable{
 	private String telefono;
 	
 	// Constructor vacío requerido por Hibernate
-  
-	// constructor vacio
-	  public Medico() {
-	    }
-	
-	public Medico(String legajo, String nombre, String apellido, Sexo sexo, LocalDate nacimiento,
+    public Medico() {
+    }
+
+	public Medico(int id, String legajo, String nombre, String apellido, Sexo sexo, LocalDate nacimiento,
 			String direccion, String localidad, String email, String telefono) {
 		
 		this.legajo = legajo;

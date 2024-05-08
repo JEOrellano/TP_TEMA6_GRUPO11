@@ -9,18 +9,12 @@ import dao.DaoHibernateMedico;
 public class App 
 {
     public static void main( String[] args )
-    {	
+    {
+    	DaoHibernateMedico medicoDAO = new DaoHibernateMedico();
+    	Medico medico = new Medico(1,"123", "Juan", "Pérez", Sexo.M, LocalDate.parse("1980-01-01"), "Calle 123", "Ciudad", "juan@example.com", "123456789");
+    	medicoDAO.Add(medico);
     		
-    		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd"); // your template here
-
-    		LocalDate fecha = formatter.(LocalDate.of(1980, 01, 05));
-    		
-    		System.out.println(fecha.toString());
-    		
-    		Medico medico = new Medico("123", "Juan", "Pérez", Sexo.M, fecha , "Calle 123", "Ciudad", "juan@example.com", "123456789");
+    	//medicoDAO.Delete("123");
     	
-    		DaoHibernateMedico.Add(medico);
-
-
     }
 }
