@@ -1,6 +1,7 @@
 package entidad;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
@@ -38,7 +39,7 @@ public class Medico implements Serializable{
 	private Sexo sexo;
 	
 	@Column(name="nacimiento", columnDefinition = "DATE")
-	private LocalDate nacimiento;
+	private Date nacimiento;
 	
 	@Column(name="direccion")
 	private String direccion;
@@ -56,7 +57,7 @@ public class Medico implements Serializable{
     public Medico() {
     }
 
-	public Medico(int id, String legajo, String nombre, String apellido, Sexo sexo, LocalDate nacimiento,
+	public Medico(String legajo, String nombre, String apellido, Sexo sexo, Date nacimiento,
 			String direccion, String localidad, String email, String telefono) {
 		
 		this.legajo = legajo;
@@ -107,11 +108,11 @@ public class Medico implements Serializable{
 		this.sexo = sexo;
 	}
 
-	public LocalDate getNacimiento() {
+	public Date getNacimiento() {
 		return nacimiento;
 	}
 
-	public void setNacimiento(LocalDate nacimiento) {
+	public void setNacimiento(Date nacimiento) {
 		this.nacimiento = nacimiento;
 	}
 
