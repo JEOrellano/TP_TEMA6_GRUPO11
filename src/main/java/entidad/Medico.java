@@ -9,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import enums.Sexo;
 
@@ -35,7 +37,7 @@ public class Medico implements Serializable{
 	@Column(name="sexo")
 	private Sexo sexo;
 	
-	@Column(name="nacimiento")
+	@Column(name="nacimiento", columnDefinition = "DATE")
 	private LocalDate nacimiento;
 	
 	@Column(name="direccion")
@@ -51,15 +53,14 @@ public class Medico implements Serializable{
 	private String telefono;
 	
 	// Constructor vacío requerido por Hibernate
-    public Medico() {
-    }
+  
 	// constructor vacio
-	public Medico(int id, String string, String string2, String string3, Sexo m, String string4, String string5, String string6, String string7, String string8) {
-	}
-
-	public Medico(int id, String legajo, String nombre, String apellido, Sexo sexo, LocalDate nacimiento,
+	  public Medico() {
+	    }
+	
+	public Medico(String legajo, String nombre, String apellido, Sexo sexo, LocalDate nacimiento,
 			String direccion, String localidad, String email, String telefono) {
-		this.id = id;
+		
 		this.legajo = legajo;
 		this.nombre = nombre;
 		this.apellido = apellido;
@@ -75,9 +76,6 @@ public class Medico implements Serializable{
 		return id;
 	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
 
 	public String getLegajo() {
 		return legajo;
