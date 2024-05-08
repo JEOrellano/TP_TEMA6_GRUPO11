@@ -18,4 +18,15 @@ public class DaoHibernateMedico {
 	    session.getTransaction().commit();    
 		ch.cerrarSession();
 	}
+	
+	public static void Delete(Medico medico) {
+		ConfigHibernate ch = new ConfigHibernate();
+		Session session= ch.abrirConexion();
+		
+		session.beginTransaction();
+	    session.delete(medico);
+	    session.getTransaction().commit();    
+	    
+		ch.cerrarSession();
+	}
 }
