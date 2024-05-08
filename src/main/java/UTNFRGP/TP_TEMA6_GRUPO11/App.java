@@ -10,11 +10,10 @@ public class App
     public static void main( String[] args )
     {
     	DaoHibernateMedico medicoDAO = new DaoHibernateMedico();
-
-    		Medico medico = new Medico(1,"123", "Juan", "Pérez", Sexo.M, "01/01/1980", "Calle 123", "Ciudad", "juan@example.com", "123456789");
+    	Medico medico = new Medico(1,"123", "Juan", "Pérez", Sexo.M, LocalDate.parse("1980-01-01"), "Calle 123", "Ciudad", "juan@example.com", "123456789");
+    	medicoDAO.Add(medico);
+    		
+    	//medicoDAO.Delete("123");
     	
-    		medicoDAO.Add(medico);
-
-
     }
 }
