@@ -1,6 +1,7 @@
 package entidad;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
@@ -9,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import enums.Sexo;
 
@@ -35,8 +38,8 @@ public class Medico implements Serializable{
 	@Column(name="sexo")
 	private Sexo sexo;
 	
-	@Column(name="nacimiento")
-	private LocalDate nacimiento;
+	@Column(name="nacimiento", columnDefinition = "DATE")
+	private Date nacimiento;
 	
 	@Column(name="direccion")
 	private String direccion;
@@ -50,13 +53,13 @@ public class Medico implements Serializable{
 	@Column(name="telefono")
 	private String telefono;
 	
-	// constructor vacio
-	public Medico() {
-	}
+	// Constructor vacío requerido por Hibernate
+    public Medico() {
+    }
 
-	public Medico(int id, String legajo, String nombre, String apellido, Sexo sexo, LocalDate nacimiento,
+	public Medico(String legajo, String nombre, String apellido, Sexo sexo, Date nacimiento,
 			String direccion, String localidad, String email, String telefono) {
-		this.id = id;
+		
 		this.legajo = legajo;
 		this.nombre = nombre;
 		this.apellido = apellido;
@@ -72,9 +75,6 @@ public class Medico implements Serializable{
 		return id;
 	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
 
 	public String getLegajo() {
 		return legajo;
@@ -108,11 +108,11 @@ public class Medico implements Serializable{
 		this.sexo = sexo;
 	}
 
-	public LocalDate getNacimiento() {
+	public Date getNacimiento() {
 		return nacimiento;
 	}
 
-	public void setNacimiento(LocalDate nacimiento) {
+	public void setNacimiento(Date nacimiento) {
 		this.nacimiento = nacimiento;
 	}
 
