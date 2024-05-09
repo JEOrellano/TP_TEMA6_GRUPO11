@@ -15,20 +15,20 @@ public class App
          Date fechaNacimiento = Date.valueOf(fecha);
     	
     	Medico medico = new Medico("123", "Juan", "Pérez", Sexo.M, fechaNacimiento, "Calle 123", "Ciudad", "juan@example.com", "123456789");
-    	//  DaoHibernateMedico.Add(medico);
+    	 DaoHibernateMedico.Add(medico);
     		
     	//	DaoHibernateMedico.Delete("123");
     	
     	
-    	Medico medico2 = DaoHibernateMedico.leerUno("123");
-    	System.out.println(medico2.toString());
+    	//Medico medico2 = DaoHibernateMedico.leerUno("123");
+    	//System.out.println(medico2.toString());
     	
-    	medico2.setNombre("Jose");
-    	DaoHibernateMedico.modificarMedico(medico2);
+    	//medico2.setNombre("Jose");
+    	//DaoHibernateMedico.modificarMedico(medico2);
     	
-        medico2 = DaoHibernateMedico.leerUno("123");
+    //    medico2 = DaoHibernateMedico.leerUno("123");
     	
-    	System.out.println(medico2.toString());
+    	//System.out.println(medico2.toString());
 
         
         
