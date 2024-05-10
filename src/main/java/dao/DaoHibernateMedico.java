@@ -92,7 +92,7 @@ public class DaoHibernateMedico {
 
 		session.beginTransaction();
 
-		Query queryMedico = session.createQuery("FROM MEDICO");
+		Query queryMedico = session.createQuery("FROM Medico");
 		List<Medico> listMedico = queryMedico.list();
 		for (Medico medico : listMedico) {
 			System.out.println("Legajo: " + medico.getLegajo() + ", Nombre: " + medico.getNombre() + ", Apellido: "
