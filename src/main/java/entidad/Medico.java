@@ -16,50 +16,50 @@ import javax.persistence.TemporalType;
 import enums.Sexo;
 
 @Entity
-@Table(name="Medico")
-public class Medico implements Serializable{
+@Table(name = "Medico")
+public class Medico implements Serializable {
 	// Implementar serializable
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
-	@Column(name="id")
+	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
-	@Column(name="legajo",unique=true)
-	private String legajo;
-	
-	@Column(name="nombre")
-	private String nombre;
-	
-	@Column(name="apellido")
-	private String apellido;
-	
-	@Column(name="sexo")
-	private Sexo sexo;
-	
-	@Column(name="nacimiento", columnDefinition = "DATE")
-	private Date nacimiento;
-	
-	@Column(name="direccion")
-	private String direccion;
-	
-	@Column(name="localidad")
-	private String localidad;
-	
-	@Column(name="email")
-	private String email;
-	
-	@Column(name="telefono")
-	private String telefono;
-	
-	// Constructor vacío requerido por Hibernate
-    public Medico() {
-    }
 
-	public Medico(String legajo, String nombre, String apellido, Sexo sexo, Date nacimiento,
-			String direccion, String localidad, String email, String telefono) {
-		
+	@Column(name = "legajo", unique = true)
+	private String legajo;
+
+	@Column(name = "nombre")
+	private String nombre;
+
+	@Column(name = "apellido")
+	private String apellido;
+
+	@Column(name = "sexo")
+	private Sexo sexo;
+
+	@Column(name = "nacimiento", columnDefinition = "DATE")
+	private Date nacimiento;
+
+	@Column(name = "direccion")
+	private String direccion;
+
+	@Column(name = "localidad")
+	private String localidad;
+
+	@Column(name = "email")
+	private String email;
+
+	@Column(name = "telefono")
+	private String telefono;
+
+	// Constructor vacío requerido por Hibernate
+	public Medico() {
+	}
+
+	public Medico(String legajo, String nombre, String apellido, Sexo sexo, Date nacimiento, String direccion,
+			String localidad, String email, String telefono) {
+
 		this.legajo = legajo;
 		this.nombre = nombre;
 		this.apellido = apellido;
@@ -74,7 +74,6 @@ public class Medico implements Serializable{
 	public int getId() {
 		return id;
 	}
-
 
 	public String getLegajo() {
 		return legajo;
