@@ -1,28 +1,34 @@
-package dao;
+package daoImpl;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
-import java.util.List;
 
-import javax.transaction.Transaction;
-
+import dao.ConfigHibernate;
+import dao.IHibernateMedicoDao;
 import entidad.Medico;
+import excepciones.PK_Repetida;
 
-public class DaoHibernateMedico {
-	public static void Add(Medico medico) {
+public class HibernateMedicoDaoImpl implements IHibernateMedicoDao{
+
+	public void add(Medico medico) throws PK_Repetida{
 		ConfigHibernate ch = new ConfigHibernate();
 		Session session = ch.abrirConexion();
 
 		session.beginTransaction();
-		session.save(medico);
+		
+		if(leerUno(medico.getLegajo())!=null) {
+			throw new PK_Repetida();
+		} else {
+			session.save(medico);
+		}
 
 		session.getTransaction().commit();
 		ch.cerrarSession();
 	}
 
-	public static void Delete(String legajo) {
+	public void delete(String legajo) {
 		ConfigHibernate ch = new ConfigHibernate();
 		Session session = ch.abrirConexion();
 
@@ -39,8 +45,7 @@ public class DaoHibernateMedico {
 		ch.cerrarSession();
 	}
 
-	public static Medico leerUno(String legajo) {
-
+	public Medico leerUno(String legajo) {
 		ConfigHibernate ch = new ConfigHibernate();
 		Session session = ch.abrirConexion();
 
@@ -53,10 +58,9 @@ public class DaoHibernateMedico {
 
 		ch.cerrarSession();
 		return medico;
-
 	}
 
-	public static void modificarMedico(Medico medicoModificado) {
+	public void modificarMedico(Medico medicoModificado) {
 		ConfigHibernate ch = new ConfigHibernate();
 		Session session = ch.abrirConexion();
 
@@ -65,7 +69,6 @@ public class DaoHibernateMedico {
 		Medico medicoExistente = (Medico) session.get(Medico.class, medicoModificado.getLegajo());
 
 		if (medicoExistente != null) {
-
 			medicoExistente.setNombre(medicoModificado.getNombre());
 			medicoExistente.setApellido(medicoModificado.getApellido());
 			medicoExistente.setDireccion(medicoModificado.getDireccion());
@@ -86,22 +89,18 @@ public class DaoHibernateMedico {
 		ch.cerrarSession();
 	}
 
-	public static void listarMedico() {
+	public void listarMedico() {
 		ConfigHibernate ch = new ConfigHibernate();
 		Session session = ch.abrirConexion();
 
 		session.beginTransaction();
-		System.out.println("entro mostrar");
 
 		Query queryMedico = session.createQuery("FROM Medico");
 		List<Medico> listMedico = queryMedico.list();
 		for (Medico medico : listMedico) {
-			System.out.println("Legajo: " + medico.getLegajo() + ", Nombre: " + medico.getNombre() + ", Apellido: "
-					+ medico.getApellido() + ", Sexo: " + medico.getSexo() + ", Fecha de Nacimiento: "
-					+ medico.getNacimiento() + ", Dirección: " + medico.getDireccion() + ", Localidad: "
-					+ medico.getLocalidad() + ", Email: " + medico.getEmail() + ", Teléfono: " + medico.getTelefono());
+			System.out.println(medico.toString());
 		}
 		session.getTransaction().commit();
-
 	}
+
 }
