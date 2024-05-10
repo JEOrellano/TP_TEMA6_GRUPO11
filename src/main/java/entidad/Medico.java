@@ -20,13 +20,9 @@ import enums.Sexo;
 public class Medico implements Serializable {
 	// Implementar serializable
 	private static final long serialVersionUID = 1L;
-
+	
 	@Id
-	@Column(name = "id")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-
-	@Column(name = "legajo", unique = true)
+	@Column(name = "legajo")
 	private String legajo;
 
 	@Column(name = "nombre")
@@ -69,10 +65,6 @@ public class Medico implements Serializable {
 		this.localidad = localidad;
 		this.email = email;
 		this.telefono = telefono;
-	}
-
-	public int getId() {
-		return id;
 	}
 
 	public String getLegajo() {
@@ -149,7 +141,7 @@ public class Medico implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Medico [id=" + id + ", legajo=" + legajo + ", nombre=" + nombre + ", apellido=" + apellido + ", sexo="
+		return "Medico [legajo=" + legajo + ", nombre=" + nombre + ", apellido=" + apellido + ", sexo="
 				+ sexo + ", nacimiento=" + nacimiento + ", direccion=" + direccion + ", localidad=" + localidad
 				+ ", email=" + email + ", telefono=" + telefono + "]";
 	}
