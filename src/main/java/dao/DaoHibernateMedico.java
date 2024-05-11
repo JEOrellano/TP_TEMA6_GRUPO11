@@ -2,6 +2,7 @@ package dao;
 
 import java.util.ArrayList;
 
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import java.util.List;
@@ -26,8 +27,7 @@ public class DaoHibernateMedico {
 		ConfigHibernate ch = new ConfigHibernate();
 		Session session = ch.abrirConexion();
 
-		Medico medico = (Medico) session.createQuery("FROM Medico WHERE legajo = :legajo")
-				.setParameter("legajo", legajo).uniqueResult();
+		 Medico medico=(Medico)session.get(Medico.class,legajo);
 		if (medico != null) {
 			session.beginTransaction();
 			session.delete(medico);
@@ -43,16 +43,20 @@ public class DaoHibernateMedico {
 
 		ConfigHibernate ch = new ConfigHibernate();
 		Session session = ch.abrirConexion();
+		session.beginTransaction();		
+		//Nuevo metodo
+		    Medico medico = (Medico) session.get(Medico.class, legajo);
+		    session.getTransaction().commit();
+		    ch.cerrarSession();		    
+		    return medico;
+		    
+	    //Viejo Metodo
+			/*Query query = session.createQuery("FROM Medico WHERE legajo = :legajo");
+			query.setParameter("legajo", legajo);
+			Medico medico = (Medico) query.uniqueResult();
 
-		session.beginTransaction();
-
-		// filtro por el legajo
-		Query query = session.createQuery("FROM Medico WHERE legajo = :legajo");
-		query.setParameter("legajo", legajo);
-		Medico medico = (Medico) query.uniqueResult();
-
-		ch.cerrarSession();
-		return medico;
+			ch.cerrarSession();
+			return medico;*/
 
 	}
 
@@ -89,7 +93,7 @@ public class DaoHibernateMedico {
 	public static void listarMedico() {
 		ConfigHibernate ch = new ConfigHibernate();
 		Session session = ch.abrirConexion();
-
+/* Viejo Metodo
 		session.beginTransaction();
 		System.out.println("entro mostrar");
 
@@ -102,6 +106,24 @@ public class DaoHibernateMedico {
 					+ medico.getLocalidad() + ", Email: " + medico.getEmail() + ", Teléfono: " + medico.getTelefono());
 		}
 		session.getTransaction().commit();
+*/
+		//Nuevo codigo
+		
+		session.beginTransaction();
+		System.out.println("entro mostrar");
 
+		// Utilizando Criteria para obtener la lista de médicos
+		Criteria queryMedico = session.createCriteria(Medico.class);
+		List<Medico> listMedico = queryMedico.list();
+
+		for (Medico medico : listMedico) {
+		    System.out.println("Legajo: " + medico.getLegajo() + ", Nombre: " + medico.getNombre() + ", Apellido: "
+		            + medico.getApellido() + ", Sexo: " + medico.getSexo() + ", Fecha de Nacimiento: "
+		            + medico.getNacimiento() + ", Dirección: " + medico.getDireccion() + ", Localidad: "
+		            + medico.getLocalidad() + ", Email: " + medico.getEmail() + ", Teléfono: " + medico.getTelefono());
+		}
+
+		session.getTransaction().commit();
+		
 	}
 }

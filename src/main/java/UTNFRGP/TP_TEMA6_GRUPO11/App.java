@@ -31,16 +31,16 @@ public class App {
 		e.printStackTrace();
 	}
 	// leer uno
-	Medico medicoTest = hmdi.leerUno("123");
-	System.out.println("se leyo 123 - " + medicoTest.toString());
+	Medico medicoTest = hmdi.leerUno("008");
+	System.out.println("se leyo 008 - " + medicoTest.toString());
 	// modificar
-	medicoTest.setNombre("Jose");
+	medicoTest.setNombre("Charly");
 	hmdi.modificarMedico(medicoTest);
-	medicoTest = hmdi.leerUno("123");
-	System.out.println("se modifico 123 - " + medicoTest.toString());
+	medicoTest = hmdi.leerUno("002");
+	System.out.println("se modifico 001 - " + medicoTest.toString());
 	// borrar
-	hmdi.delete("123");
-	System.out.println("se borro 123 - ");
+	hmdi.delete("001");
+	System.out.println("se borro 001 - ");
 	// listar todos
 	for (int i = 0; i < 10; i++) {
 		medico = new Medico("123"+i, "Juan"+i, "Pérez"+i, Sexo.M, fechaNacimiento, "Calle 123"+i, "Ciudad"+i,
@@ -57,7 +57,7 @@ public class App {
 	
 	hmdi.listarMedico();        
 		
-	/* VERSION con metodos static DaoHibernateMedico*/
+	
 	// Ejemplo 1
     LocalDate fecha1 = LocalDate.of(1988, 3, 5);
     Date fechaNacimiento1 = Date.valueOf(fecha1);
